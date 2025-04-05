@@ -11,6 +11,11 @@ const config: Config = {
     extend: {
       colors: {
         "warm-pink": "#F5A7B8",
+        "light-pink": "#FFF8F9",
+        "dark-silver": "#394155",
+        "light-silver": "#F2F2F2",
+        "warm-yellow": "#F9B88B",
+        "light-yellow": "#fef8f1",
         "light-coral": "#F4D0A2",
         "mint-green": "#A6D8D4",
         "soft-lavender": "#B8A6D8",

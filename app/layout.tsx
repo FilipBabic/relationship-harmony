@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
+import { ReactNode } from "react";
 
+import { auth } from "@/auth";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navigation/navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = localFont({
   src: "./fonts/PoppinsVF.ttf",
@@ -26,20 +30,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
   return (
     <html lang="en">
       <body className={`${poppins.className} ${playfair.variable} antialiased`}>
-        <div className="flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <SessionProvider session={session}>
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+        </SessionProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
