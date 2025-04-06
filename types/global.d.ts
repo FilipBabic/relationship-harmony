@@ -1,24 +1,19 @@
-interface Tag {
-  _id: string;
-  name: string;
+interface SignInWithOAuthParams {
+  provider: "google" | "facebook";
+  providerAccountId: string;
+  user: {
+    email: string;
+    name: string;
+    image: string;
+    username: string;
+  };
 }
 
-interface Author {
-  _id: string;
+interface AuthCredentials {
   name: string;
-  image: string;
-}
-
-interface Question {
-  _id: string;
-  title: string;
-  tags: Tag[];
-  author: Author;
-  createdAt: Date;
-  upvotes: number;
-  answers: number;
-  views: number;
-  createdAt: Date;
+  username: string;
+  email: string;
+  password: string;
 }
 
 type ActionResponse<T = null> = {

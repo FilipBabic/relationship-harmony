@@ -7,7 +7,7 @@ export interface IUser {
   image?: string;
   testSessionId?: Types.ObjectId;
 }
-
+export interface IUserDoc extends IUser, Document {}
 const UserSchema = new Schema(
   {
     name: { type: String, required: true },

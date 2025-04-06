@@ -5,7 +5,7 @@ import SocialAuthForm from "@/components/forms/SocialAuthForm";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <main className="flex min-h-screen items-center justify-center px-4 py-10">
+    <main className="flex min-h-screen items-center justify-center px-4 py-32">
       <section
         className="min-w-full rounded-[10px] border
        px-4 py-10 shadow-md sm:min-w-[520px] sm:px-8 sm:py-2"

@@ -13,7 +13,7 @@ const SocialAuthForm = () => {
   const handleSignIn = async (provider: "google") => {
     try {
       await signIn(provider, {
-        callbackUrl: ROUTES.HOME,
+        callbackUrl: ROUTES.DASHBOARD,
         redirect: false,
       });
     } catch (error) {
@@ -30,7 +30,7 @@ const SocialAuthForm = () => {
   return (
     <div className="mt-10 text-center">
       <Button
-        className="min-h-12 max-w-xs flex-1 items-center rounded bg-dark-silver px-4 py-3.5 text-white"
+        className="min-h-12 max-w-xs flex-1 items-center rounded bg-dark-silver px-4 py-3.5 text-white hover:bg-[#5A6A7A]"
         onClick={() => handleSignIn("google")}
       >
         <Image
