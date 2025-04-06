@@ -30,7 +30,7 @@ const SocialAuthForm = () => {
   return (
     <div className="mt-10 text-center">
       <Button
-        className="body-medium rounded-2 min-h-12 max-w-xs flex-1 items-center bg-dark-silver px-4 py-3.5 text-white"
+        className="min-h-12 max-w-xs flex-1 items-center rounded bg-dark-silver px-4 py-3.5 text-white"
         onClick={() => handleSignIn("google")}
       >
         <Image
