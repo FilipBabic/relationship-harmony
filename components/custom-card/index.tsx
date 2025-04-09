@@ -17,8 +17,8 @@ const CustomCard = ({
 }: CardProps) => {
   return (
     <ShadCard
-      className={`${bgColor} ${textColor} mx-1 my-2 max-w-5xl rounded-sm border-2 p-4 
-      font-medium shadow-xl md:border-2 ${className}`}
+      className={`${bgColor} ${textColor} mx-1 my-2 max-w-5xl rounded-xl border px-4 py-8
+      font-medium shadow-xl  ${className}`}
     >
       <CardContent>{children}</CardContent>
     </ShadCard>
