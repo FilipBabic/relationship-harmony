@@ -26,6 +26,6 @@ const TestAnswerSchema = new Schema(
   { timestamps: true }
 );
 
-const TestAnswer = models?.TestSession || model<ITestAnswer>("TestSession", TestAnswerSchema);
+const TestAnswer = models?.TestAnswer || model<ITestAnswer>("TestAnswer", TestAnswerSchema);
 
 export default TestAnswer;
