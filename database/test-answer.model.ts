@@ -1,4 +1,4 @@
-import { Schema, Types } from "mongoose";
+import { Schema, Types, model, models } from "mongoose";
 
 interface ITestAnswer {
   user: Types.ObjectId;
@@ -11,9 +11,9 @@ interface ITestAnswer {
   edited: boolean;
   testSession: Types.ObjectId;
 }
-const testAnswerSchema = Schema<ITestAnswer>(
+const TestAnswerSchema = new Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     questionId: { type: Number, required: true },
     answer: { type: String, enum: ["a", "b", "c", "d", "e", null], default: null },
     factor: { type: String, required: true }, // 'big5', 'myers', 'love', 'relationship'
@@ -21,11 +21,11 @@ const testAnswerSchema = Schema<ITestAnswer>(
     skipped: { type: Boolean, default: false },
     flagged: { type: Boolean, default: false },
     edited: { type: Boolean, default: false },
-    testSession: { type: mongoose.Schema.Types.ObjectId, ref: "TestSession" },
+    testSession: { type: Schema.Types.ObjectId, ref: "TestSession" },
   },
   { timestamps: true }
 );
 
-testAnswerSchema.index({ user: 1, questionId: 1 }, { unique: true });
+const TestAnswer = models?.TestSession || model<ITestAnswer>("TestSession", TestAnswerSchema);
 
-export default mongoose.models.TestAnswer || mongoose.model("TestAnswer", testAnswerSchema);
+export default TestAnswer;
