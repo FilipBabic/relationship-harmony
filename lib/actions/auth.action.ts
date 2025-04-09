@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import { signIn } from "@/auth";
 import Account from "@/database/account.model";
+import TestSession from "@/database/test-session.model";
 import User from "@/database/user.model";
 
 import action from "../handlers/action";
@@ -23,6 +24,8 @@ export async function signUpWithCredentials(params: AuthCredentials): Promise<Ac
 
   const session = await mongoose.startSession();
   session.startTransaction();
+
+  let transactionCommitted = false;
 
   try {
     const existingUser = await User.findOne({ email }).session(session);
@@ -55,14 +58,27 @@ export async function signUpWithCredentials(params: AuthCredentials): Promise<Ac
       ],
       { session }
     );
+    await TestSession.create(
+      [
+        {
+          users: [newUser._id],
+          status: "in_progress",
+          shareResult: false,
+        },
+      ],
+      { session }
+    );
 
     await session.commitTransaction();
+    transactionCommitted = true;
 
     await signIn("credentials", { email, password, redirect: false });
 
     return { success: true };
   } catch (error) {
-    await session.abortTransaction();
+    if (!transactionCommitted) {
+      await session.abortTransaction();
+    }
 
     return handleError(error) as ErrorResponse;
   } finally {

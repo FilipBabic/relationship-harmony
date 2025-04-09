@@ -1,8 +1,8 @@
-import { LogIn, ClipboardCheck, LogOut } from "lucide-react";
+import { LogIn, ClipboardCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/user-avatar/UserAvatar";
 
@@ -28,25 +28,13 @@ const Navbar = async () => {
           </Link>
         </Button>
         {session?.user?.id ? (
-          <div className="flex flex-row items-center justify-center gap-2">
-            <form
-              action={async () => {
-                "use server";
-
-                await signOut({ redirectTo: "/" });
-              }}
-            >
-              <Button type="submit" className="base-medium w-fit bg-warm-pink px-4 py-3">
-                <LogOut className="size-5  text-white" />
-                <span className="text-dark300_light900 max-lg:hidden">Logout</span>
-              </Button>
-            </form>
-            <UserAvatar
-              id={session.user.id}
-              name={session.user.name!}
-              imageUrl={session.user?.image}
-            />
-          </div>
+          <UserAvatar
+            id={session.user.id}
+            name={session.user.name!}
+            email={session.user.email!}
+            imageUrl={session.user?.image}
+            className="transition-all duration-300 hover:scale-105"
+          />
         ) : (
           <Button asChild className="bg-warm-pink hover:bg-[#5A6A7A]">
             <Link href="/sign-in">
