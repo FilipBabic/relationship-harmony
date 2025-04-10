@@ -46,6 +46,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async session({ session, token }) {
       session.user.id = token.sub as string;
@@ -90,5 +94,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return true;
     },
+  },
+  pages: {
+    error: "/auth/error",
   },
 });
