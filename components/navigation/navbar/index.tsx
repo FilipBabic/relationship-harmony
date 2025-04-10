@@ -26,7 +26,7 @@ const Navbar = async () => {
           <Tooltip>
             <TooltipTrigger>
               <Button asChild className="bg-dark-silver hover:bg-[#5A6A7A]">
-                <Link href="/quiz">
+                <Link href="/">
                   <ClipboardCheck />
                   Take test
                 </Link>

@@ -95,7 +95,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true;
     },
   },
-  pages: {
-    error: "/auth/error",
-  },
 });
